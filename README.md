@@ -1,10 +1,10 @@
 # Plataforma web de la Municipalidad Provincial de Puno
 
-Proyecto del curso Desarrollo Basado en Plataformas I (SIS302), UNA-Puno, 2026-II.
+Proyecto del curso Desarrollo Basado en Plataformas I, UNA-Puno, 2026-II.
 Prototipo con datos de prueba ficticios.
 
 ## Integrantes
-- Calsin Calsin Omar (trabaja solo) · usuario de GitHub: omarcalsin
+- Calsin Calsin Omar · usuario de GitHub: omarcalsin
 
 ## Herramientas
 - Visual Studio Code, Git y GitHub
