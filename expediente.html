@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estado de expediente · Municipalidad Provincial de Puno</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="contenedor">
+      <a class="marca" href="index.html">Municipalidad Provincial de Puno<small>Trámites y servicios en línea</small></a>
+      <nav aria-label="Menú principal">
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="tramites.html">Trámites</a></li>
+        <li><a href="expediente.html" aria-current="page">Estado de expediente</a></li>
+        <li><a href="login.html">Acceso del personal</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="contenedor">
+    <p class="migas"><a href="index.html">Inicio</a> › Estado de expediente</p>
+    <h1>Estado de mi expediente</h1>
+    <div class="mensaje error" id="resumen" hidden role="alert" tabindex="-1"></div>
+    <form class="formulario" id="form" action="expediente.html" method="get" novalidate>
+      <fieldset>
+        <legend>Datos del expediente</legend>
+        <div class="campo">
+          <label for="numero">Número de expediente <span class="req">(obligatorio)</span></label>
+          <input id="numero" name="n" type="text" inputmode="numeric" required minlength="4" maxlength="4" pattern="[0-9]{4}" autocomplete="off" placeholder="Ejemplo: 0001" aria-describedby="ayuda-numero err-numero">
+          <p class="ayuda" id="ayuda-numero">Está en la parte superior de su cargo de recepción (4 dígitos).</p>
+          <p class="err" id="err-numero" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="dni">DNI del solicitante <span class="req">(obligatorio)</span></label>
+          <input id="dni" name="dni" type="text" inputmode="numeric" required minlength="8" maxlength="8" pattern="[0-9]{8}" autocomplete="off" aria-describedby="ayuda-dni err-dni">
+          <p class="ayuda" id="ayuda-dni">8 dígitos. Use un DNI de prueba, no uno real.</p>
+          <p class="err" id="err-dni" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="fecha">Fecha en que ingresó el expediente</label>
+          <input id="fecha" name="fecha" type="date" min="2026-01-01" max="2026-12-31" aria-describedby="ayuda-fecha err-fecha">
+          <p class="ayuda" id="ayuda-fecha">Opcional. Ayuda a ubicarlo más rápido.</p>
+          <p class="err" id="err-fecha" hidden></p>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Contacto para el aviso (opcional)</legend>
+        <div class="campo">
+          <label for="correo">Correo electrónico</label>
+          <input id="correo" name="correo" type="email" autocomplete="email" aria-describedby="err-correo">
+          <p class="err" id="err-correo" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="celular">Celular</label>
+          <input id="celular" name="celular" type="tel" inputmode="numeric" maxlength="9" pattern="9[0-9]{8}" autocomplete="tel-national" aria-describedby="ayuda-celular err-celular">
+          <p class="ayuda" id="ayuda-celular">9 dígitos y empieza con 9. Ejemplo: 951234567.</p>
+          <p class="err" id="err-celular" hidden></p>
+        </div>
+      </fieldset>
+      <button class="boton" type="submit">Consultar</button>
+    </form>
+    <div class="mensaje ok" id="ok" hidden role="status"></div>
+    <div class="mensaje error" id="error" hidden role="alert"></div>
+  </main>
+  <footer class="pie">
+    <div class="contenedor">
+      Jr. Deustua N° 458, Plaza de Armas · Central (051) 601000 ·
+      <span class="aviso-prueba">Prototipo con datos de prueba ficticios (SIS302, 2026-II).</span>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+  <script src="js/expediente.js"></script>
+</body>
+</html>
