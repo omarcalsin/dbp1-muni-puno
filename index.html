@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inicio · Municipalidad Provincial de Puno</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="contenedor">
+      <a class="marca" href="index.html">Municipalidad Provincial de Puno<small>Trámites y servicios en línea</small></a>
+      <nav aria-label="Menú principal">
+      <ul class="menu">
+        <li><a href="index.html" aria-current="page">Inicio</a></li>
+        <li><a href="tramites.html">Trámites</a></li>
+        <li><a href="expediente.html">Estado de expediente</a></li>
+        <li><a href="login.html">Acceso del personal</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="contenedor">
+    <section class="portada">
+      <h1>¿Qué trámite necesita hacer?</h1>
+      <p>Consulte requisitos, costos y plazos, o vea en qué estado está su expediente, sin ir a la municipalidad.</p>
+      <form class="buscador" action="tramites.html" role="search">
+        <input id="q" name="q" type="search" placeholder="Ejemplo: licencia, partida, matrimonio" aria-label="Buscar trámite">
+        <button class="boton" type="submit">Buscar</button>
+      </form>
+    </section>
+    <section class="accesos" aria-label="Accesos directos">
+      <article class="tarjeta">
+        <span class="icono" aria-hidden="true">📄</span>
+        <h2>Trámites y requisitos</h2>
+        <p>Lista de trámites con lo que debe presentar, cuánto cuesta y cuánto demora.</p>
+        <a class="boton" href="tramites.html">Ver trámites</a>
+      </article>
+      <article class="tarjeta">
+        <span class="icono" aria-hidden="true">🔎</span>
+        <h2>Estado de mi expediente</h2>
+        <p>Ingrese el número de su expediente y vea en qué etapa está.</p>
+        <a class="boton" href="expediente.html">Consultar estado</a>
+      </article>
+      <article class="tarjeta">
+        <span class="icono" aria-hidden="true">🏛️</span>
+        <h2>Atención presencial</h2>
+        <p>Lunes a viernes, de 8:00 a 16:00 h, en la Plaza de Armas.</p>
+        <a class="boton secundario" href="tramites.html">Qué llevar</a>
+      </article>
+    </section>
+  </main>
+  <footer class="pie">
+    <div class="contenedor">
+      Jr. Deustua N° 458, Plaza de Armas · Central (051) 601000 ·
+      <span class="aviso-prueba">Prototipo con datos de prueba ficticios (SIS302, 2026-II).</span>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+
+</body>
+</html>

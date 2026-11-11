@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detalle del trámite · Municipalidad Provincial de Puno</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="contenedor">
+      <a class="marca" href="index.html">Municipalidad Provincial de Puno<small>Trámites y servicios en línea</small></a>
+      <nav aria-label="Menú principal">
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="tramites.html" aria-current="page">Trámites</a></li>
+        <li><a href="expediente.html">Estado de expediente</a></li>
+        <li><a href="login.html">Acceso del personal</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="contenedor">
+    <p class="migas"><a href="index.html">Inicio</a> › <a href="tramites.html">Trámites</a> › <span id="miga"></span></p>
+    <article class="ficha" id="ficha"></article>
+  </main>
+  <footer class="pie">
+    <div class="contenedor">
+      Jr. Deustua N° 458, Plaza de Armas · Central (051) 601000 ·
+      <span class="aviso-prueba">Prototipo con datos de prueba ficticios (SIS302, 2026-II).</span>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+  <script>
+    const t = tramites().find(x => x.id === parametro("id")) || tramites()[0];
+    document.getElementById("miga").textContent = t.nombre;
+    document.title = t.nombre + " · Municipalidad Provincial de Puno";
+    document.getElementById("ficha").innerHTML = `
+      <h1>${t.nombre}</h1>
+      <p>${t.area}</p>
+      <div class="resumen">
+        <div>Costo<strong>${soles(t.costo)}</strong></div>
+        <div>Plazo<strong>${t.plazo}</strong></div>
+        <div>Dónde<strong>Mesa de partes</strong></div>
+      </div>
+      <h2>Requisitos</h2>
+      <ol class="requisitos">${t.requisitos.map(r => `<li>${r}</li>`).join("")}</ol>
+      <div class="acciones">
+        <a class="boton" href="expediente.html">Ya lo presenté: ver estado</a>
+        <a class="boton secundario" href="tramites.html">‹ Volver a trámites</a>
+      </div>`;
+  </script>
+</body>
+</html>

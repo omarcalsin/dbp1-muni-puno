@@ -1,0 +1,115 @@
+/* Prototipo navegable · Plataforma web de la Municipalidad Provincial de Puno
+   Paleta (contraste medido, WCAG AA):
+   --identidad #1f3864  blanco encima 11.62:1
+   --accion    #1f5fae  blanco encima 6.35:1 · sobre blanco 6.35:1
+   --texto     #1f2933  sobre blanco 14.76:1 · sobre --fondo 13.53:1
+   --ok        #1e6b3a  sobre --ok-fondo 5.74:1
+   --error     #b3261e  sobre --error-fondo 5.72:1 */
+:root {
+  --identidad: #1f3864;
+  --accion: #1f5fae;
+  --texto: #1f2933;
+  --fondo: #f4f5f7;
+  --blanco: #ffffff;
+  --borde: #c9ced6;
+  --ok: #1e6b3a;
+  --ok-fondo: #e6f4ea;
+  --error: #b3261e;
+  --error-fondo: #fdecea;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--texto);
+  background: var(--fondo);
+}
+a { color: var(--accion); }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--accion); outline-offset: 2px;
+}
+
+/* Cabecera y navegación */
+.cabecera { background: var(--identidad); color: var(--blanco); }
+.cabecera .contenedor { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding-top: 12px; padding-bottom: 12px; }
+.marca { color: var(--blanco); text-decoration: none; font-weight: 700; font-size: 18px; }
+.marca small { display: block; font-weight: 400; font-size: 16px; }
+.menu { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0; padding: 0; list-style: none; }
+.menu a { color: var(--blanco); text-decoration: none; padding: 4px 0; }
+.menu a[aria-current="page"] { font-weight: 700; border-bottom: 3px solid var(--blanco); }
+
+.contenedor { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+main.contenedor { padding-top: 20px; padding-bottom: 32px; }
+
+.migas { font-size: 16px; margin: 0 0 12px; }
+h1 { font-size: 28px; line-height: 1.25; margin: 0 0 8px; }
+h2 { font-size: 22px; line-height: 1.3; margin: 0 0 8px; }
+h3 { font-size: 18px; margin: 0 0 4px; }
+p { max-width: 68ch; margin: 0 0 12px; }
+
+/* Botones */
+.boton {
+  display: inline-block; background: var(--accion); color: var(--blanco);
+  border: 0; border-radius: 6px; padding: 10px 18px; font: inherit; font-weight: 600;
+  text-decoration: none; cursor: pointer;
+}
+.boton.secundario { background: var(--blanco); color: var(--accion); border: 2px solid var(--accion); }
+
+/* Inicio: accesos directos */
+.portada { background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+.accesos { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 720px) { .accesos { grid-template-columns: repeat(3, 1fr); } }
+.tarjeta { background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.tarjeta .icono { font-size: 28px; line-height: 1; }
+.tarjeta .boton { align-self: flex-start; margin-top: auto; }
+
+/* Buscador y lista */
+.buscador { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+.buscador input { flex: 1 1 240px; }
+label { display: block; font-weight: 600; margin-bottom: 4px; }
+input, textarea {
+  font: inherit; color: var(--texto); background: var(--blanco);
+  border: 2px solid #6b7280; border-radius: 6px; padding: 9px 12px; width: 100%;
+}
+.lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.lista li { background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; padding: 14px 16px; }
+.lista .datos { font-size: 16px; margin: 4px 0 8px; }
+.contador { font-size: 16px; margin-bottom: 8px; }
+
+/* Detalle */
+.ficha { background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; padding: 20px; }
+.resumen { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 12px 0 16px; }
+@media (min-width: 720px) { .resumen { grid-template-columns: repeat(3, 1fr); } }
+.resumen div { background: var(--fondo); border-radius: 6px; padding: 10px 12px; }
+.resumen strong { display: block; font-size: 20px; }
+.requisitos li { margin-bottom: 6px; }
+
+/* Mensajes de estado: siempre con texto e icono, nunca solo color */
+.mensaje { border-radius: 6px; padding: 12px 14px; margin: 16px 0; border-left: 6px solid; }
+.mensaje.ok { background: var(--ok-fondo); color: var(--ok); border-color: var(--ok); }
+.mensaje.error { background: var(--error-fondo); color: var(--error); border-color: var(--error); }
+.mensaje strong { display: block; }
+[hidden] { display: none !important; }
+
+.formulario { background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; padding: 20px; max-width: 560px; }
+.campo { margin-bottom: 14px; }
+.ayuda { font-size: 16px; margin-top: 4px; }
+.acciones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+
+.sesion { background: var(--blanco); border: 1px solid var(--borde); border-radius: 6px; padding: 8px 12px; margin-bottom: 16px; font-size: 16px; }
+
+.pie { background: var(--identidad); color: var(--blanco); font-size: 16px; }
+.pie .contenedor { padding-top: 16px; padding-bottom: 16px; }
+.pie a { color: var(--blanco); }
+.aviso-prueba { font-style: italic; }
+
+/* Formulario con grupos de campos (G-05) */
+fieldset { border: 1px solid var(--borde); border-radius: 6px; margin: 0 0 16px; padding: 12px 14px; }
+legend { font-weight: 700; padding: 0 6px; }
+.req { font-weight: 400; }
+input[aria-invalid="true"] { border-color: var(--error); }
+.err { color: var(--error); font-weight: 600; margin: 4px 0 0; }
+#resumen ul { margin: 6px 0 0; padding-left: 20px; }
+#resumen a { color: var(--error); }

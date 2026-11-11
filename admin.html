@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editar trámite · Municipalidad Provincial de Puno</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="contenedor">
+      <a class="marca" href="index.html">Municipalidad Provincial de Puno<small>Trámites y servicios en línea</small></a>
+      <nav aria-label="Menú principal">
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="tramites.html">Trámites</a></li>
+        <li><a href="expediente.html">Estado de expediente</a></li>
+        <li><a href="login.html" aria-current="page">Acceso del personal</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="contenedor">
+    <p class="migas"><a href="index.html">Inicio</a> › Administración › Editar trámite</p>
+    <div class="sesion" id="sesion">Sesión iniciada: administrador de contenidos · <a href="#" id="salir">Cerrar sesión</a></div>
+    <h1>Editar trámite</h1>
+    <form class="formulario" id="form" novalidate>
+      <div class="campo"><label for="tramite">Trámite</label>
+        <select id="tramite" style="font:inherit;padding:9px 12px;border:2px solid #6b7280;border-radius:6px;width:100%"></select></div>
+      <div class="campo"><label for="costo">Costo (S/)</label><input id="costo" inputmode="decimal" aria-describedby="ayuda-costo">
+        <p class="ayuda" id="ayuda-costo">Use punto para los decimales, por ejemplo 120.50.</p></div>
+      <div class="campo"><label for="plazo">Plazo</label><input id="plazo"></div>
+      <div class="acciones">
+        <button class="boton" type="submit">Guardar cambios</button>
+        <a class="boton secundario" id="ver" href="#">Ver como ciudadano</a>
+      </div>
+    </form>
+    <div class="mensaje ok" id="ok" hidden role="status"></div>
+    <div class="mensaje error" id="error" hidden role="alert"></div>
+  </main>
+  <footer class="pie">
+    <div class="contenedor">
+      Jr. Deustua N° 458, Plaza de Armas · Central (051) 601000 ·
+      <span class="aviso-prueba">Prototipo con datos de prueba ficticios (SIS302, 2026-II).</span>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+  <script>
+    if (!sesionIniciada()) location.replace("login.html");
+    const sel = document.getElementById("tramite"), costo = document.getElementById("costo"), plazo = document.getElementById("plazo");
+    sel.innerHTML = tramites().map(t => `<option value="${t.id}">${t.nombre}</option>`).join("");
+    function cargar() {
+      const t = tramites().find(x => x.id === sel.value);
+      costo.value = t.costo.toFixed(2); plazo.value = t.plazo;
+      document.getElementById("ver").href = "detalle.html?id=" + t.id;
+    }
+    sel.addEventListener("change", cargar); cargar();
+    document.getElementById("form").addEventListener("submit", ev => {
+      ev.preventDefault();
+      const ok = document.getElementById("ok"), error = document.getElementById("error");
+      ok.hidden = error.hidden = true;
+      const valor = Number(costo.value.replace(",", "."));
+      if (!costo.value.trim() || isNaN(valor) || valor < 0) {
+        error.innerHTML = "<strong>⚠ Costo no válido</strong>Escriba un número mayor o igual a 0, por ejemplo 120.50.";
+        error.hidden = false; return;
+      }
+      guardarCambio(sel.value, { costo: valor, plazo: plazo.value.trim() });
+      ok.innerHTML = `<strong>✔ Cambios guardados</strong>El ciudadano ya ve el nuevo costo: ${soles(valor)}.`;
+      ok.hidden = false;
+    });
+    document.getElementById("salir").addEventListener("click", ev => {
+      ev.preventDefault(); try { sessionStorage.removeItem("sesion"); } catch (e) {} location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acceso del personal · Municipalidad Provincial de Puno</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="contenedor">
+      <a class="marca" href="index.html">Municipalidad Provincial de Puno<small>Trámites y servicios en línea</small></a>
+      <nav aria-label="Menú principal">
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="tramites.html">Trámites</a></li>
+        <li><a href="expediente.html">Estado de expediente</a></li>
+        <li><a href="login.html" aria-current="page">Acceso del personal</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="contenedor">
+    <p class="migas"><a href="index.html">Inicio</a> › Acceso del personal</p>
+    <h1>Acceso del personal</h1>
+    <form class="formulario" id="form" novalidate>
+      <div class="campo"><label for="usuario">Usuario</label><input id="usuario" autocomplete="username"></div>
+      <div class="campo"><label for="clave">Contraseña</label><input id="clave" type="password" autocomplete="current-password"></div>
+      <button class="boton" type="submit">Iniciar sesión</button>
+      <div class="mensaje error" id="error" hidden role="alert"><strong>⚠ Faltan datos</strong>Escriba su usuario y su contraseña.</div>
+      <p class="ayuda">Prototipo: cualquier usuario y contraseña no vacíos inician la sesión.</p>
+    </form>
+  </main>
+  <footer class="pie">
+    <div class="contenedor">
+      Jr. Deustua N° 458, Plaza de Armas · Central (051) 601000 ·
+      <span class="aviso-prueba">Prototipo con datos de prueba ficticios (SIS302, 2026-II).</span>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+  <script>
+    document.getElementById("form").addEventListener("submit", ev => {
+      ev.preventDefault();
+      const u = document.getElementById("usuario").value.trim(), c = document.getElementById("clave").value;
+      if (!u || !c) { document.getElementById("error").hidden = false; return; }
+      try { sessionStorage.setItem("sesion", "admin"); } catch (e) {}
+      location.href = "admin.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trámites · Municipalidad Provincial de Puno</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="contenedor">
+      <a class="marca" href="index.html">Municipalidad Provincial de Puno<small>Trámites y servicios en línea</small></a>
+      <nav aria-label="Menú principal">
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="tramites.html" aria-current="page">Trámites</a></li>
+        <li><a href="expediente.html">Estado de expediente</a></li>
+        <li><a href="login.html">Acceso del personal</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="contenedor">
+    <p class="migas"><a href="index.html">Inicio</a> › Trámites</p>
+    <h1>Trámites y requisitos</h1>
+    <form class="buscador" role="search" onsubmit="event.preventDefault(); mostrar();">
+      <input id="q" type="search" placeholder="Buscar por nombre o palabra clave" aria-label="Buscar trámite" oninput="mostrar()">
+      <button class="boton" type="submit">Buscar</button>
+    </form>
+    <p class="contador" id="contador" aria-live="polite"></p>
+    <ul class="lista" id="lista"></ul>
+    <div class="mensaje error" id="vacio" hidden><strong>⚠ No se encontraron trámites</strong>Revise la palabra o pruebe con otra, por ejemplo «licencia».</div>
+  </main>
+  <footer class="pie">
+    <div class="contenedor">
+      Jr. Deustua N° 458, Plaza de Armas · Central (051) 601000 ·
+      <span class="aviso-prueba">Prototipo con datos de prueba ficticios (SIS302, 2026-II).</span>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+  <script>
+    const campo = document.getElementById("q");
+    campo.value = parametro("q") || "";
+    function mostrar() {
+      const q = campo.value.trim().toLowerCase();
+      const lista = tramites().filter(t => t.nombre.toLowerCase().includes(q));
+      document.getElementById("lista").innerHTML = lista.map(t => `
+        <li><h2><a href="detalle.html?id=${t.id}">${t.nombre}</a></h2>
+        <p class="datos">Costo: <strong>${soles(t.costo)}</strong> · Plazo: ${t.plazo} · ${t.area}</p>
+        <a href="detalle.html?id=${t.id}">Ver requisitos ›</a></li>`).join("");
+      document.getElementById("contador").textContent = q ? `${lista.length} trámite(s) con «${campo.value.trim()}»` : `${lista.length} trámites`;
+      document.getElementById("vacio").hidden = lista.length > 0;
+    }
+    mostrar();
+  </script>
+</body>
+</html>
