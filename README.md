@@ -4,7 +4,7 @@ Proyecto del curso Desarrollo Basado en Plataformas I (SIS302), UNA-Puno, 2026-I
 Prototipo con datos de prueba ficticios.
 
 ## Integrantes
-- Calsin Calsin Omar (trabaja solo) · usuario de GitHub: _por completar_
+- Calsin Calsin Omar (trabaja solo) · usuario de GitHub: omarcalsin
 
 ## Herramientas
 - Visual Studio Code, Git y GitHub
