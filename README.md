@@ -3,6 +3,8 @@
 Proyecto del curso Desarrollo Basado en Plataformas I, UNA-Puno, 2026-II.
 Prototipo con datos de prueba ficticios.
 
+**Ver en línea (sin descargar nada):** https://omarcalsin.github.io/dbp1-muni-puno/ (publicado con GitHub Pages desde la rama `main`).
+
 ## Integrantes
 - Calsin Calsin Omar · usuario de GitHub: omarcalsin
 
