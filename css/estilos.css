@@ -121,3 +121,6 @@ input[aria-invalid="true"] { border-color: var(--error); }
 
 /* G-06: estados que cambia JavaScript (siempre con texto, no solo color) */
 .entrega { background: var(--ok-fondo); color: var(--ok); border-radius: 6px; padding: 10px 12px; }
+.estado-atencion { font-weight: 600; }
+.estado-atencion.abierto { color: var(--ok); }
+.estado-atencion.cerrado { color: var(--error); }
