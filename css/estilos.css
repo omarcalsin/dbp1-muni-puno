@@ -118,3 +118,6 @@ input[aria-invalid="true"] { border-color: var(--error); }
 .err { color: var(--error); font-weight: 600; margin: 4px 0 0; }
 #resumen ul { margin: 6px 0 0; padding-left: 20px; }
 #resumen a { color: var(--error); }
+
+/* G-06: estados que cambia JavaScript (siempre con texto, no solo color) */
+.entrega { background: var(--ok-fondo); color: var(--ok); border-radius: 6px; padding: 10px 12px; }

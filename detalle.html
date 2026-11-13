@@ -31,24 +31,7 @@
     </div>
   </footer>
   <script src="js/datos.js"></script>
-  <script>
-    const t = tramites().find(x => x.id === parametro("id")) || tramites()[0];
-    document.getElementById("miga").textContent = t.nombre;
-    document.title = t.nombre + " · Municipalidad Provincial de Puno";
-    document.getElementById("ficha").innerHTML = `
-      <h1>${t.nombre}</h1>
-      <p>${t.area}</p>
-      <div class="resumen">
-        <div>Costo<strong>${soles(t.costo)}</strong></div>
-        <div>Plazo<strong>${t.plazo}</strong></div>
-        <div>Dónde<strong>Mesa de partes</strong></div>
-      </div>
-      <h2>Requisitos</h2>
-      <ol class="requisitos">${t.requisitos.map(r => `<li>${r}</li>`).join("")}</ol>
-      <div class="acciones">
-        <a class="boton" href="expediente.html">Ya lo presenté: ver estado</a>
-        <a class="boton secundario" href="tramites.html">‹ Volver a trámites</a>
-      </div>`;
-  </script>
+  <script src="js/plazo.js"></script>
+  <script src="js/detalle.js"></script>
 </body>
 </html>
