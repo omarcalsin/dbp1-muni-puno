@@ -25,7 +25,12 @@ body {
   line-height: 1.5;
   color: var(--texto);
   background: var(--fondo);
+  /* Pie de página siempre al fondo, aunque la página tenga poco contenido */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+main { flex: 1 0 auto; width: 100%; }
 a { color: var(--accion); }
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
   outline: 3px solid var(--accion); outline-offset: 2px;
@@ -100,7 +105,7 @@ input, textarea {
 
 .sesion { background: var(--blanco); border: 1px solid var(--borde); border-radius: 6px; padding: 8px 12px; margin-bottom: 16px; font-size: 16px; }
 
-.pie { background: var(--identidad); color: var(--blanco); font-size: 16px; }
+.pie { background: var(--identidad); color: var(--blanco); font-size: 16px; margin-top: auto; flex-shrink: 0; }
 .pie .contenedor { padding-top: 16px; padding-bottom: 16px; }
 .pie a { color: var(--blanco); }
 .aviso-prueba { font-style: italic; }
