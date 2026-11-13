@@ -63,11 +63,11 @@ function consultar(n) {
   error.hidden = true;
   const e = EXPEDIENTES[n];
   if (!e) {
-    error.innerHTML = "<strong>✖ Expediente no encontrado</strong>No existe el expediente " + n + ". Revise el número en su cargo de recepción.";
+    mostrarMensaje(error, "✖ Expediente no encontrado", `No existe el expediente ${n}. Revise el número en su cargo de recepción.`);
     error.hidden = false;
     return;
   }
-  ok.innerHTML = "<strong>✔ Expediente " + n + ": " + e.estado + "</strong>" + e.tramite + " · Ingresó el " + e.ingreso + " · " + e.area;
+  mostrarMensaje(ok, `✔ Expediente ${n}: ${e.estado}`, `${e.tramite} · Ingresó el ${e.ingreso} · ${e.area}`);
   ok.hidden = false;
 }
 
@@ -80,11 +80,18 @@ form.addEventListener("submit", function (ev) {
     if (campo.tagName === "INPUT" && !validarCampo(campo)) invalidos.push(campo);
   }
   if (invalidos.length > 0) {
-    let lista = "<strong>⚠ Revise " + invalidos.length + (invalidos.length === 1 ? " campo" : " campos") + "</strong><ul>";
+    const titulo = document.createElement("strong");
+    titulo.textContent = `⚠ Revise ${invalidos.length} ${invalidos.length === 1 ? "campo" : "campos"}`;
+    const lista = document.createElement("ul");
     for (const campo of invalidos) {
-      lista += '<li><a href="#' + campo.id + '">' + mensajeDe(campo) + "</a></li>";
+      const enlace = document.createElement("a");
+      enlace.href = "#" + campo.id;
+      enlace.textContent = mensajeDe(campo);
+      const item = document.createElement("li");
+      item.append(enlace);
+      lista.append(item);
     }
-    resumen.innerHTML = lista + "</ul>";
+    resumen.replaceChildren(titulo, lista);
     resumen.hidden = false;
     resumen.focus();
     return;

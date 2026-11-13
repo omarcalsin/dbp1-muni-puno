@@ -41,3 +41,10 @@ function tramites() {
 function soles(n) { return "S/ " + Number(n).toFixed(2); }
 function parametro(nombre) { return new URLSearchParams(location.search).get(nombre); }
 function sesionIniciada() { try { return sessionStorage.getItem("sesion") === "admin"; } catch (e) { return false; } }
+
+// Escribe un mensaje «título + texto» en una caja, con textContent (sin innerHTML).
+function mostrarMensaje(caja, titulo, texto) {
+  const fuerte = document.createElement("strong");
+  fuerte.textContent = titulo;
+  caja.replaceChildren(fuerte, texto);
+}
