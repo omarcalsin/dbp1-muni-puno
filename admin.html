@@ -48,7 +48,12 @@
   <script>
     if (!sesionIniciada()) location.replace("login.html");
     const sel = document.getElementById("tramite"), costo = document.getElementById("costo"), plazo = document.getElementById("plazo");
-    sel.innerHTML = tramites().map(t => `<option value="${t.id}">${t.nombre}</option>`).join("");
+    for (const t of tramites()) {
+      const opcion = document.createElement("option");
+      opcion.value = t.id;
+      opcion.textContent = t.nombre;
+      sel.append(opcion);
+    }
     function cargar() {
       const t = tramites().find(x => x.id === sel.value);
       costo.value = t.costo.toFixed(2); plazo.value = t.plazo;
@@ -61,11 +66,11 @@
       ok.hidden = error.hidden = true;
       const valor = Number(costo.value.replace(",", "."));
       if (!costo.value.trim() || isNaN(valor) || valor < 0) {
-        error.innerHTML = "<strong>⚠ Costo no válido</strong>Escriba un número mayor o igual a 0, por ejemplo 120.50.";
+        mostrarMensaje(error, "⚠ Costo no válido", "Escriba un número mayor o igual a 0, por ejemplo 120.50.");
         error.hidden = false; return;
       }
       guardarCambio(sel.value, { costo: valor, plazo: plazo.value.trim() });
-      ok.innerHTML = `<strong>✔ Cambios guardados</strong>El ciudadano ya ve el nuevo costo: ${soles(valor)}.`;
+      mostrarMensaje(ok, "✔ Cambios guardados", `El ciudadano ya ve el nuevo costo: ${soles(valor)}.`);
       ok.hidden = false;
     });
     document.getElementById("salir").addEventListener("click", ev => {
