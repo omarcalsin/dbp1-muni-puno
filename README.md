@@ -25,3 +25,9 @@ Prototipo con datos de prueba ficticios.
 | 2 | `js/plazo.js` y `js/detalle.js` | `fechaDeEntrega()` calcula cuándo estaría listo un trámite (solo días hábiles) y se muestra en `detalle.html` con `textContent` |
 | 3 | `js/inicio.js` | En `index.html` cambia el texto, el atributo `datetime` y la clase `abierto`/`cerrado` del horario de atención |
 | 4 | `js/tramites.js` | La lista de `tramites.html` se genera con `createElement` a partir del arreglo `TRAMITES` (`js/datos.js`), con resumen hecho con `filter` y `reduce` |
+
+### Revisión del código (G-06, pasos 5 y 6)
+No hubo un equipo revisor disponible: la revisión con la lista P-04 se hizo con Claude Code y está declarada así en la Plantilla B. Correcciones aplicadas:
+1. `js/expediente.js`: mensajes con `textContent` en vez de `innerHTML` (el número de `?n=` permitía XSS).
+2. `admin.html`: opciones y mensajes con `createElement` y `textContent`.
+3. `js/detalle.js`: aviso de «Trámite no encontrado» y nombres descriptivos.
