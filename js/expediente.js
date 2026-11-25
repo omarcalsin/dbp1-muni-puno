@@ -112,5 +112,4 @@ form.addEventListener("focusout", function (ev) {
 
 if (parametro("n")) {
   document.getElementById("numero").value = parametro("n");
-  consultar(parametro("n"));
 }

@@ -8,7 +8,7 @@ const selectorArea = document.querySelector("#area");
 const lista = document.querySelector("#lista");
 const contador = document.querySelector("#contador");
 const avisoError = document.querySelector("#error-carga");
-let listaTramites = [];
+let listaTramites = null;
 campo.value = parametro("q") || "";
 
 // Crea la tarjeta <li> de un trámite.
@@ -64,6 +64,7 @@ function crearTarjeta(t) {
 
 // Muestra los trámites que coinciden con la palabra buscada y con el área elegida.
 function mostrar() {
+  if (listaTramites === null) return;
   const q = campo.value.trim().toLowerCase();
   const area = selectorArea.value;
   const encontrados = listaTramites.filter((t) =>
@@ -120,13 +121,9 @@ lista.addEventListener("click", (evento) => {
 });
 
 // Carga del archivo JSON con manejo de errores (G-07, paso 4)
-fetch("data/tramites.json")
-  .then((respuesta) => {
-    if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
-    return respuesta.json();
-  })
+cargarTramites()
   .then((datos) => {
-    listaTramites = aplicarCambios(datos);
+    listaTramites = datos;
     llenarAreas();
     mostrar();
     mostrarResumen();

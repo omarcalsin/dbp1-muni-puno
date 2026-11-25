@@ -12,7 +12,7 @@ Prototipo con datos de prueba ficticios (el portal real de referencia es `portal
 - **Entorno:** Visual Studio Code, Git y GitHub.
 - **Pruebas y validación:** Firefox (motor Gecko), Brave (motor Chromium), servicio de validación del W3C (HTML y CSS) y script revisor en Python del texto de estudio (semana 8).
 - **Datos e imágenes:** costos, plazos y expedientes ficticios de prueba; textos de referencia tomados del portal público `portal.munipuno.gob.pe`. No se usaron plantillas externas ni bibliotecas de terceros en la Unidad I.
-- **Herramientas de IA usadas:** Claude y Gemini en Antigravity / Claude Code (apoyo en la estructura del repositorio y el formulario en la G-05, los scripts y la revisión de código en la G-06, y la carga del JSON y pruebas de integración en las G-07 y G-08). Todo el código fue revisado, adaptado al proyecto y probado en el navegador.
+- **Herramientas de IA usadas:** Claude y Gemini en Antigravity / Claude Code (apoyo en la estructura del repositorio y el formulario en la G-05, los scripts y la revisión de código en la G-06, y la carga del JSON y pruebas de integración en las G-07 y G-08). Codex apoyó la revisión de las plantillas G-07/G-08, la preparación de la exposición y las pruebas del catálogo, la consulta y la edición de trámites.
 
 ## Estructura del repositorio
 - `index.html`, `tramites.html`, `detalle.html`, `expediente.html`, `login.html`, `admin.html` y `ejercicios.html` (G-06)

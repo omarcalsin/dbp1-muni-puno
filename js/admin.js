@@ -44,7 +44,7 @@ document.getElementById("form").addEventListener("submit", (ev) => {
   error.hidden = true;
 
   const valor = Number(campoCosto.value.trim().replace(",", "."));
-  const costoValido = campoCosto.value.trim() !== "" && !Number.isNaN(valor) && valor >= 0;
+  const costoValido = campoCosto.value.trim() !== "" && Number.isFinite(valor) && valor >= 0;
   errCosto.textContent = costoValido ? "" : "⚠ Escriba un número mayor o igual a 0, por ejemplo 120.50.";
   errCosto.hidden = costoValido;
   campoCosto.setAttribute("aria-invalid", costoValido ? "false" : "true");
@@ -56,12 +56,14 @@ document.getElementById("form").addEventListener("submit", (ev) => {
 
   if (!costoValido || !plazoValido) return;
 
-  guardarCambio(selector.value, { costo: valor, plazo: campoPlazo.value.trim() });
   const actual = catalogoAdmin.find((x) => x.id === selector.value);
-  if (actual) {
-    actual.costo = valor;
-    actual.plazo = campoPlazo.value.trim();
+  if (!actual || !guardarCambio(actual.id, { costo: valor, plazo: campoPlazo.value.trim() })) {
+    mostrarMensaje(error, "⚠ No se guardaron los cambios", "Revise que el catálogo esté disponible y que el navegador permita guardar datos en esta pestaña.");
+    error.hidden = false;
+    return;
   }
+  actual.costo = valor;
+  actual.plazo = campoPlazo.value.trim();
   mostrarMensaje(ok, "✔ Cambios guardados", `El ciudadano ya ve el nuevo costo: ${soles(valor)}.`);
   ok.hidden = false;
 });
