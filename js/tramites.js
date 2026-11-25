@@ -1,13 +1,14 @@
 // Lista de trámites (tramites.html).
 // G-06 · Paso 4: las tarjetas se crean con createElement, se llenan con textContent y se agregan con append.
-// G-07 · Paso 3: eventos input (buscar mientras se escribe), change (filtrar por área),
-//                submit (botón Buscar) y click con delegación (ver u ocultar los requisitos).
+// G-07 · Paso 3: eventos input (buscar), change (filtrar por área), submit y click con delegación.
+// G-07 · Paso 4: los trámites se cargan desde data/tramites.json con fetch y manejo de errores.
 
 const campo = document.querySelector("#q");
 const selectorArea = document.querySelector("#area");
 const lista = document.querySelector("#lista");
 const contador = document.querySelector("#contador");
-let listaTramites = []; // se llena al iniciar
+const avisoError = document.querySelector("#error-carga");
+let listaTramites = [];
 campo.value = parametro("q") || "";
 
 // Crea la tarjeta <li> de un trámite.
@@ -88,6 +89,7 @@ function llenarAreas() {
 
 // Resumen con métodos de arreglos: cuántos se entregan en 1 día y el costo más bajo.
 function mostrarResumen() {
+  if (listaTramites.length === 0) return;
   const rapidos = listaTramites.filter((t) => Number.parseInt(t.plazo, 10) === 1).length;
   const masBarato = listaTramites.reduce((min, t) => (t.costo < min ? t.costo : min), listaTramites[0].costo);
   document.querySelector("#resumen-tramites").textContent =
@@ -111,17 +113,29 @@ lista.addEventListener("click", (evento) => {
   const boton = evento.target.closest("button[data-id]");
   if (!boton) return;
   const requisitos = document.getElementById(boton.getAttribute("aria-controls"));
-  const abrir = requisitos.hidden; // si estaba oculto, se abre
+  const abrir = requisitos.hidden;
   requisitos.hidden = !abrir;
   boton.setAttribute("aria-expanded", String(abrir));
   boton.textContent = abrir ? "Ocultar requisitos" : "Ver requisitos";
 });
 
-function iniciar(datos) {
-  listaTramites = datos;
-  llenarAreas();
-  mostrar();
-  mostrarResumen();
-}
-
-iniciar(tramites());
+// Carga del archivo JSON con manejo de errores (G-07, paso 4)
+fetch("data/tramites.json")
+  .then((respuesta) => {
+    if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+    return respuesta.json();
+  })
+  .then((datos) => {
+    listaTramites = aplicarCambios(datos);
+    llenarAreas();
+    mostrar();
+    mostrarResumen();
+    console.log("Trámites cargados desde JSON:", listaTramites.length);
+  })
+  .catch((error) => {
+    contador.textContent = "No se pudo cargar el catálogo de trámites.";
+    mostrarMensaje(avisoError, "⚠ No se pudo cargar el catálogo",
+      "Abra el proyecto con un servidor local (http://) o verifique el archivo data/tramites.json.");
+    avisoError.hidden = false;
+    console.log("Error al cargar el catálogo:", error.message);
+  });

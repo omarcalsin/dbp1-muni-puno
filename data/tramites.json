@@ -1,0 +1,75 @@
+[
+  {
+    "id": "licencia-funcionamiento",
+    "nombre": "Licencia de funcionamiento",
+    "area": "Subgerencia de Licencias",
+    "costo": 120.5,
+    "plazo": "15 días hábiles",
+    "requisitos": [
+      "Solicitud con carácter de declaración jurada",
+      "Copia del DNI del solicitante",
+      "Número de RUC",
+      "Croquis de ubicación del local"
+    ]
+  },
+  {
+    "id": "certificado-itse",
+    "nombre": "Certificado de inspección técnica de seguridad (ITSE)",
+    "area": "Subgerencia de Gestión del Riesgo",
+    "costo": 98,
+    "plazo": "9 días hábiles",
+    "requisitos": [
+      "Solicitud de inspección",
+      "Plano de distribución del local",
+      "Constancia de pago"
+    ]
+  },
+  {
+    "id": "licencia-edificacion",
+    "nombre": "Licencia de edificación",
+    "area": "Gerencia de Desarrollo Urbano",
+    "costo": 350,
+    "plazo": "20 días hábiles",
+    "requisitos": [
+      "Formulario único de edificación (FUE)",
+      "Copia literal de dominio",
+      "Planos de arquitectura firmados"
+    ]
+  },
+  {
+    "id": "copia-partida",
+    "nombre": "Copia certificada de partida de nacimiento",
+    "area": "Registro Civil",
+    "costo": 10,
+    "plazo": "1 día hábil",
+    "requisitos": [
+      "Número de DNI o datos del inscrito",
+      "Constancia de pago"
+    ]
+  },
+  {
+    "id": "matrimonio-civil",
+    "nombre": "Matrimonio civil",
+    "area": "Registro Civil",
+    "costo": 85,
+    "plazo": "8 días hábiles",
+    "requisitos": [
+      "Copia del DNI de los contrayentes",
+      "Partidas de nacimiento",
+      "Certificado médico prenupcial",
+      "Declaración de dos testigos"
+    ]
+  },
+  {
+    "id": "registro-canes",
+    "nombre": "Registro municipal de canes",
+    "area": "Subgerencia de Salud",
+    "costo": 15,
+    "plazo": "1 día hábil",
+    "requisitos": [
+      "Copia del DNI del propietario",
+      "Carné de vacunación del can",
+      "Foto del can"
+    ]
+  }
+]
