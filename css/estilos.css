@@ -32,7 +32,7 @@ body {
 }
 main { flex: 1 0 auto; width: 100%; }
 a { color: var(--accion); }
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
   outline: 3px solid var(--accion); outline-offset: 2px;
 }
 
@@ -74,7 +74,7 @@ p { max-width: 68ch; margin: 0 0 12px; }
 .buscador { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
 .buscador input { flex: 1 1 240px; }
 label { display: block; font-weight: 600; margin-bottom: 4px; }
-input, textarea {
+input, select, textarea {
   font: inherit; color: var(--texto); background: var(--blanco);
   border: 2px solid #6b7280; border-radius: 6px; padding: 9px 12px; width: 100%;
 }

@@ -1,0 +1,61 @@
+/* G-07 · Paso 1 · Maqueta de la vista principal (tramites.html)
+   Grid para la estructura de la página y Flexbox dentro de los componentes. */
+
+/* Teléfono: una sola columna, los filtros arriba de la lista */
+.pagina {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "cabecera"
+    "filtros"
+    "principal"
+    "pie";
+  min-height: 100vh;
+}
+.pagina > .cabecera  { grid-area: cabecera; }
+.pagina > .filtros   { grid-area: filtros; padding: 16px 16px 0; }
+.pagina > .principal { grid-area: principal; padding: 16px 16px 32px; min-width: 0; }
+.pagina > .pie       { grid-area: pie; }
+
+/* Computadora: filtros a la izquierda y trámites a la derecha.
+   Las columnas de los costados (1fr) quedan vacías para centrar el contenido
+   con el mismo ancho que la cabecera (1040 px). */
+@media (min-width: 760px) {
+  .pagina {
+    grid-template-columns: 1fr 14rem minmax(0, 48rem) 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "cabecera cabecera cabecera  cabecera"
+      ".        filtros  principal ."
+      "pie      pie      pie       pie";
+    column-gap: 16px;
+  }
+  .pagina > .filtros   { padding: 20px 0 32px; align-self: start; }
+  .pagina > .principal { padding: 20px 0 32px; }
+}
+
+/* Filtros: caja con el formulario en columna (Flexbox) */
+.filtros .buscador {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  margin: 0 0 12px;
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 14px;
+}
+.filtros .buscador input,
+.filtros .buscador select { flex: none; margin-bottom: 8px; }
+.filtros .buscador .boton { align-self: flex-start; }
+
+/* Tarjetas de trámites: la rejilla se adapta sola al ancho (Grid) */
+.tarjetas {
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 16px;
+  align-content: start;
+}
+.tarjetas .tarjeta h2 { font-size: 19px; }
+.tarjetas .tarjeta .datos { margin: 0; }
+.tarjetas .requisitos { margin: 0; padding-left: 20px; }

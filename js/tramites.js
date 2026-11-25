@@ -8,6 +8,7 @@ campo.value = parametro("q") || "";
 // Crea la tarjeta <li> de un trámite.
 function crearTarjeta(t) {
   const tarjeta = document.createElement("li");
+  tarjeta.className = "tarjeta";
   const titulo = document.createElement("h2");
   const enlace = document.createElement("a");
   enlace.href = `detalle.html?id=${encodeURIComponent(t.id)}`;
