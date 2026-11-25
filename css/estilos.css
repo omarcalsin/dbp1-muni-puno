@@ -37,6 +37,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* Cabecera y navegación */
+.cabecera a:focus-visible { outline-color: var(--blanco); }
 .cabecera { background: var(--identidad); color: var(--blanco); }
 .cabecera .contenedor { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding-top: 12px; padding-bottom: 12px; }
 .marca { color: var(--blanco); text-decoration: none; font-weight: 700; font-size: 18px; }
@@ -128,16 +129,17 @@ input[aria-invalid="true"] { border-color: var(--error); }
 .lista > li.rapido { border-left: 6px solid var(--ok); }
 .etiqueta { display: inline-block; background: var(--ok-fondo); color: var(--ok); font-weight: 600; border-radius: 4px; padding: 2px 8px; margin: 0 8px 8px 0; }
 
-/* G-07 · Paso 2 · Transiciones: se anima transform y box-shadow (el navegador lo procesa bien).
+/* G-07 · Paso 2 · Transiciones: transiciones de posición y opacidad.
    El mismo efecto aparece con el teclado (:focus-within / :focus-visible), no solo con el puntero.
    Colores al pasar el puntero: #174a88 con blanco 8.86:1 · #1f5fae sobre #e8f0fa 5.53:1 */
-.tarjeta { transition: transform .2s ease, box-shadow .2s ease; }
+.tarjeta { transition: transform .2s ease, opacity .2s ease; }
 .tarjeta:hover, .tarjeta:focus-within {
   transform: translateY(-4px);
+  opacity: .98;
   box-shadow: 0 6px 16px rgb(0 0 0 / .15);
 }
-.boton { transition: background-color .2s ease, transform .2s ease; }
-.boton:hover, .boton:focus-visible { background-color: #174a88; transform: translateY(-1px); }
+.boton { transition: opacity .2s ease, transform .2s ease; }
+.boton:hover, .boton:focus-visible { background-color: #174a88; opacity: .98; transform: translateY(-1px); }
 .boton.secundario:hover, .boton.secundario:focus-visible { background-color: #e8f0fa; }
 
 /* Quien pide menos movimiento en su sistema no ve las animaciones */
