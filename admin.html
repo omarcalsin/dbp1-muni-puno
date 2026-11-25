@@ -22,17 +22,27 @@
   </header>
   <main class="contenedor">
     <p class="migas"><a href="index.html">Inicio</a> › Administración › Editar trámite</p>
-    <div class="sesion" id="sesion">Sesión iniciada: administrador de contenidos · <a href="#" id="salir">Cerrar sesión</a></div>
+    <div class="sesion" id="sesion">Sesión iniciada: administrador de contenidos · <a href="index.html" id="salir">Cerrar sesión</a></div>
     <h1>Editar trámite</h1>
     <form class="formulario" id="form" novalidate>
-      <div class="campo"><label for="tramite">Trámite</label>
-        <select id="tramite" style="font:inherit;padding:9px 12px;border:2px solid #6b7280;border-radius:6px;width:100%"></select></div>
-      <div class="campo"><label for="costo">Costo (S/)</label><input id="costo" inputmode="decimal" aria-describedby="ayuda-costo">
-        <p class="ayuda" id="ayuda-costo">Use punto para los decimales, por ejemplo 120.50.</p></div>
-      <div class="campo"><label for="plazo">Plazo</label><input id="plazo"></div>
+      <div class="campo">
+        <label for="tramite">Trámite</label>
+        <select id="tramite" name="tramite"></select>
+      </div>
+      <div class="campo">
+        <label for="costo">Costo (S/) <span class="req">(obligatorio)</span></label>
+        <input id="costo" name="costo" type="text" inputmode="decimal" required aria-describedby="ayuda-costo err-costo">
+        <p class="ayuda" id="ayuda-costo">Use punto para los decimales, por ejemplo 120.50.</p>
+        <p class="err" id="err-costo" hidden></p>
+      </div>
+      <div class="campo">
+        <label for="plazo">Plazo <span class="req">(obligatorio)</span></label>
+        <input id="plazo" name="plazo" type="text" required aria-describedby="err-plazo">
+        <p class="err" id="err-plazo" hidden></p>
+      </div>
       <div class="acciones">
         <button class="boton" type="submit">Guardar cambios</button>
-        <a class="boton secundario" id="ver" href="#">Ver como ciudadano</a>
+        <a class="boton secundario" id="ver" href="tramites.html">Ver como ciudadano</a>
       </div>
     </form>
     <div class="mensaje ok" id="ok" hidden role="status"></div>
@@ -45,37 +55,6 @@
     </div>
   </footer>
   <script src="js/datos.js"></script>
-  <script>
-    if (!sesionIniciada()) location.replace("login.html");
-    const sel = document.getElementById("tramite"), costo = document.getElementById("costo"), plazo = document.getElementById("plazo");
-    for (const t of tramites()) {
-      const opcion = document.createElement("option");
-      opcion.value = t.id;
-      opcion.textContent = t.nombre;
-      sel.append(opcion);
-    }
-    function cargar() {
-      const t = tramites().find(x => x.id === sel.value);
-      costo.value = t.costo.toFixed(2); plazo.value = t.plazo;
-      document.getElementById("ver").href = "detalle.html?id=" + t.id;
-    }
-    sel.addEventListener("change", cargar); cargar();
-    document.getElementById("form").addEventListener("submit", ev => {
-      ev.preventDefault();
-      const ok = document.getElementById("ok"), error = document.getElementById("error");
-      ok.hidden = error.hidden = true;
-      const valor = Number(costo.value.replace(",", "."));
-      if (!costo.value.trim() || isNaN(valor) || valor < 0) {
-        mostrarMensaje(error, "⚠ Costo no válido", "Escriba un número mayor o igual a 0, por ejemplo 120.50.");
-        error.hidden = false; return;
-      }
-      guardarCambio(sel.value, { costo: valor, plazo: plazo.value.trim() });
-      mostrarMensaje(ok, "✔ Cambios guardados", `El ciudadano ya ve el nuevo costo: ${soles(valor)}.`);
-      ok.hidden = false;
-    });
-    document.getElementById("salir").addEventListener("click", ev => {
-      ev.preventDefault(); try { sessionStorage.removeItem("sesion"); } catch (e) {} location.href = "index.html";
-    });
-  </script>
+  <script src="js/admin.js"></script>
 </body>
 </html>

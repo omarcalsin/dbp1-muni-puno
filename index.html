@@ -25,7 +25,8 @@
       <h1>¿Qué trámite necesita hacer?</h1>
       <p>Consulte requisitos, costos y plazos, o vea en qué estado está su expediente, sin ir a la municipalidad.</p>
       <form class="buscador" action="tramites.html" role="search">
-        <input id="q" name="q" type="search" placeholder="Ejemplo: licencia, partida, matrimonio" aria-label="Buscar trámite">
+        <label for="q">Buscar trámite por palabra clave</label>
+        <input id="q" name="q" type="search" placeholder="Ejemplo: licencia, partida, matrimonio">
         <button class="boton" type="submit">Buscar</button>
       </form>
     </section>
@@ -46,7 +47,7 @@
         <span class="icono" aria-hidden="true">🏛️</span>
         <h2>Atención presencial</h2>
         <p>Lunes a viernes, de 8:00 a 16:00 h, en la Plaza de Armas.</p>
-        <p class="estado-atencion" id="estado-atencion">Hoy, <time id="hoy">hoy</time>: <span id="texto-estado">consulte el horario</span>.</p>
+        <p class="estado-atencion" id="estado-atencion">Hoy, <time id="hoy" datetime="2026-10-09">hoy</time>: <span id="texto-estado">consulte el horario</span>.</p>
         <a class="boton secundario" href="tramites.html">Qué llevar</a>
       </article>
     </section>

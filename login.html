@@ -24,10 +24,17 @@
     <p class="migas"><a href="index.html">Inicio</a> › Acceso del personal</p>
     <h1>Acceso del personal</h1>
     <form class="formulario" id="form" novalidate>
-      <div class="campo"><label for="usuario">Usuario</label><input id="usuario" autocomplete="username"></div>
-      <div class="campo"><label for="clave">Contraseña</label><input id="clave" type="password" autocomplete="current-password"></div>
+      <div class="campo">
+        <label for="usuario">Usuario <span class="req">(obligatorio)</span></label>
+        <input id="usuario" name="usuario" type="text" required autocomplete="username" aria-describedby="err-usuario">
+        <p class="err" id="err-usuario" hidden></p>
+      </div>
+      <div class="campo">
+        <label for="clave">Contraseña <span class="req">(obligatorio)</span></label>
+        <input id="clave" name="clave" type="password" required autocomplete="current-password" aria-describedby="err-clave">
+        <p class="err" id="err-clave" hidden></p>
+      </div>
       <button class="boton" type="submit">Iniciar sesión</button>
-      <div class="mensaje error" id="error" hidden role="alert"><strong>⚠ Faltan datos</strong>Escriba su usuario y su contraseña.</div>
       <p class="ayuda">Prototipo: cualquier usuario y contraseña no vacíos inician la sesión.</p>
     </form>
   </main>
@@ -38,14 +45,6 @@
     </div>
   </footer>
   <script src="js/datos.js"></script>
-  <script>
-    document.getElementById("form").addEventListener("submit", ev => {
-      ev.preventDefault();
-      const u = document.getElementById("usuario").value.trim(), c = document.getElementById("clave").value;
-      if (!u || !c) { document.getElementById("error").hidden = false; return; }
-      try { sessionStorage.setItem("sesion", "admin"); } catch (e) {}
-      location.href = "admin.html";
-    });
-  </script>
+  <script src="js/login.js"></script>
 </body>
 </html>
